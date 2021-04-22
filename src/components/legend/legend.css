@@ -1,0 +1,39 @@
+
+.legend_div{
+    width: 50%;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .venues{
+      background-color: #527fd9;
+  }
+  .historical{
+      background-color: #f4eb49;
+  }
+  .parks{
+      background-color: #355723;
+  }
+  .art{
+      background-color: #9c1f4d;
+  }
+  .cemeteries{
+      background-color: black;
+  }
+.clubs{
+    background-color: #ff6624;
+}
+.userAdded{
+    background-color: white;
+}
+.legend_text{
+    width: 250px;
+}

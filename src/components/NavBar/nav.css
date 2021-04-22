@@ -1,0 +1,23 @@
+.nav-color{
+    background-color: #7E81BE;   
+}
+.navbar_link{
+    color: #7b4812;
+}
+.navbar_link:hover, .nav-link:focus {
+    text-decoration: none;
+    color:#331d069f;
+  }
+  
+  .navbar_link.disabled {
+    color: #383b3da8;
+    pointer-events: none;
+    cursor: default;
+  }
+  .logoff{
+    float: right;
+    top:10px;
+  }
+  .nb_width{
+      width: 100%;
+  }
