@@ -5,7 +5,7 @@ import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
 import {Legend} from './components/legend/Legend';
 import './App.css';
-import {RouteViews} from './components/RouteViews';
+import {MapSpace} from './components/map/map';
 
 
 
@@ -19,7 +19,7 @@ const App = () => (
             <>
               <Nav />
               <Legend />
-               <RouteViews />
+               <MapSpace />
             </>
           )
         } else {
