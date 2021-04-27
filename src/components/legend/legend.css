@@ -1,6 +1,8 @@
 
 .legend_div{
-    width: 50%;
+
+    margin-top:.3rem;
+    text-align: center;
 }
 
 .dot {

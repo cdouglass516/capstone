@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './map.css';
-import greenIcon from './greenIcon.png';
+import greenIcon from '../../static/markers/historicalMarker.png';
 import shadowIcon from './shadowIcon.png';
 import retinaIcon from './retinaIcon.png';
 
@@ -22,14 +22,14 @@ export const MapSpace = ({ places }) => {
     L.Icon.Default.mergeOptions({
         iconRetinaUrl: greenIcon,
         iconUrl: greenIcon,
-        shadowUrl: shadowIcon
+        shadowUrl: greenIcon
     });
 }, []);
   
 
 return (
     <div className="map_div">
-        <MapContainer center={defaultPosition} zoom={13} style={{ height: "90vh", width: "100vw" }}>
+        <MapContainer center={defaultPosition} zoom={13}  zoomControl={false } style={{ height: "90vh", width: "95vw" }}>
             <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
