@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { Nav } from "./components/NavBar/Nav";
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
-import {Legend} from './components/legend/Legend';
+
 import './App.css';
 import {MapSpace} from './components/map/map';
 
@@ -18,7 +18,6 @@ const App = () => (
           return (
             <>
               <Nav />
-              <Legend />
                <MapSpace />
             </>
           )

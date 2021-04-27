@@ -1,0 +1,61 @@
+{
+	"users": [
+		{
+			id: 1,
+			name: "Chris Douglass",
+			email: "cdouglass516@gmail.com",
+			password: "pass1234",
+			moderator: false,
+			isAdmin: true
+		}
+	]
+	"comments [
+		{
+			id: 1,
+			userId: 1,
+			markerSourceId: 1,
+			commentText: "This is ridiculous"
+		},
+	],
+	userMarkers: [
+	{ 	id: 1,
+		markerSourcesId: 1,
+		lastModifieddate: "04/22/2021",
+		type:  "Bar",
+		name:  "The Red Door East",
+		address: "1010 Forrest Ave",
+		city: "Nashville",
+		state: "TN",
+		zip: "37206",
+		description: "Okay place to drink",
+		link: "http://www.thereddoorsaloon.com/east-nashville.html",
+		nbrReviews: 1,
+		ratingsTotal: 2
+		}],
+		imagesAvailable:[
+			{
+			id: 1,
+			imageLink: "",
+			altText: "No image",
+			userMarkerId: 1
+			}
+		],
+		markerSources: [
+		{
+			id: 1,
+			sourceName: "user",
+			sourceId: 1
+		}
+		],
+		venues: [
+		{
+			id: 1,
+			name: "Nissan Stadium",
+			description: "Stadium home of the Titans and entertainment venue",
+			location: "1 Titans Way, Nashville, TN 37213",
+			link: "https://nissanstadium.com/",
+			image: "https://www.google.com/maps/uv?pb=!1s0x8864664fe4bf4197%3A0xf9c5bc49669894e9!3m1!7e115!4shttps%3A%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipNzWX-XmcRmb65XR-HfmgofamMLTPoAHBWMcNF2%3Dw213-h160-k-no!5snissan%20stadium%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e10!2sAF1QipNzWX-XmcRmb65XR-HfmgofamMLTPoAHBWMcNF2&hl=en&sa=X&ved=2ahUKEwjq7LnqqZ3wAhWUGM0KHSVhChwQoiowTHoFCIMBEAM#"
+		}
+		]
+			
+}
