@@ -30,7 +30,7 @@ export const Login = () => {
             .then(exists => {
                 if (exists) {
                     // The user id is saved under the key nutshell_user in session Storage. Change below if needed!
-                    sessionStorage.setItem("nutshell_user", exists.id)
+                    sessionStorage.setItem("exploreNashvegas_user", exists.id)
                     history.push("/")
                 } else {
                     setExistDialog(true)
@@ -46,7 +46,7 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Nutshell</h1>
+                    <h1>Explore Nashville</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>

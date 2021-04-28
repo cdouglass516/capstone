@@ -1,28 +1,77 @@
 //this file is used to access data needed for the application.
 
 const axios = require('axios');
-export const getNashData = async () =>{
-    try{
+export const getNashData = async (type) => {
+    try {
         const baseURL = 'https://data.nashville.gov/resource/';
         const getPublicArt = () => axios.get(`${baseURL}dqkw-tj5j.json`);
         const getHistorical = () => axios.get(`${baseURL}vk65-u7my.json`);
         const getParks = () => axios.get(`${baseURL}74d7-b74t.json`);
-    const res = await axios.all([getPublicArt(), getHistorical(),getParks()]).then(axios.spread(function(res1, res2, res3) {
-        console.log(res1);
-        console.log(res2);
-        console.log(res3);
-        return res1;
-      }));
-      
-      
-    if(!res.status === 200){
-        throw new Error(`HTTP error! status: ${res.status}`);
+        const getVenues = () => axios.get('http://localhost:8088/venues')
+        switch (type) {
+            case 'pa':
+                try {
+                    const res = await getPublicArt()
+                    if (!res.status === 200) {
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                    return res.data;
+                }
+                catch (e) {
+                    console.log(e);
+                    return 'error in getNashData';
+                }
+            case 'hist':
+                try {
+                    const res = await getHistorical()
+                    if (!res.status === 200) {
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                    return res.data;
+                }
+                catch (e) {
+                    console.log(e);
+                    return 'error in getNashData';
+                }
+
+            case 'park':
+                try {
+                    const res = await getParks()
+                    if (!res.status === 200) {
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                    return res.data;
+
+                }
+                catch (e) {
+                    console.log(e);
+                    return 'error in getNashData';
+                }
+            case 'venue':
+                try {
+                    const res = await getVenues()
+                    if (!res.status === 200) {
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                    return res.data;
+
+                }
+                catch (e) {
+                    console.log(e);
+                    return 'error in getNashData';
+                }
+
+            default:
+                return 'No Data';
+        }
+
+
     }
-    
-} catch(e){
-    console.log(e);
-    return 'error in getNashData'
-}
+    catch (e) {
+
+    }
+
+
 }
 
 

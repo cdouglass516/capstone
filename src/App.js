@@ -14,7 +14,7 @@ const App = () => (
   <>
     <Route
       render={() => {
-        if (true) {
+        if (sessionStorage.getItem("exploreNashvegas_user")) {
           return (
             <>
               <Nav />

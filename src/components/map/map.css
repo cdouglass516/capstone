@@ -3,3 +3,17 @@
     width: "90vw"; 
     margin:1rem;
 }
+.leaflet-control-layers-toggle:after{ 
+    content:""; 
+    color:#000 ;
+}
+.leaflet-control-layers-toggle{ 
+    width:3rem;
+    background-position:8px 50% ;
+    background-image: none;
+    padding:1px;
+    padding-left:1px;
+    text-decoration:none;
+    line-height:12px;
+
+}
