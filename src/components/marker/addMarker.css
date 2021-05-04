@@ -1,0 +1,68 @@
+.marker__container {
+    z-index: 1000;
+    position: fixed;
+    width: 70%;
+    height: 50vh;
+    overflow-y: scroll;
+    background-color: white;
+    top: 0;
+    right: -100%;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .marker__container--active {
+    right: 0;
+  }
+  
+  .marker__description__container {
+    padding: 1rem;
+  }
+  
+  .marker__close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    color: rgb(31, 22, 22);
+    cursor: pointer;
+  }
+  
+  .marker__button {
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #f9b29c;
+    border-radius: 0.5rem;
+    appearance: none;
+    border: none;
+    color: white;
+    padding: 1rem;
+    font-size: 1rem;
+    margin: 1rem auto;
+    cursor: pointer;
+  }
+  
+  .marker__title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .marker__description {
+    line-height: 1.5rem;
+    color: #484848;
+  }
+  
+  .marker__picture {
+    height: 40vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  
+  @media only screen and (min-width: 768px) {
+    .marker__container {
+      top: auto;
+      width: 33%;
+    }
+  }

@@ -1,6 +1,9 @@
 .nav-color{
     background-color: #7E81BE;   
 }
+.navbar{
+  height: 4rem;
+}
 .navbar_link{
     color: #7b4812;
 }

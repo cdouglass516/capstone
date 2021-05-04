@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+.leaflet-control-layers {
+background: rgb(153, 48, 48);
+}

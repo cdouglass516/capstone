@@ -17,3 +17,30 @@
     line-height:12px;
 
 }
+.marker_div{
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(171,199,197,1) 0%, rgba(211,225,226,0.6054796918767507) 42%, rgba(171,199,197,1) 100%);
+   border-radius: 10px; 
+   border-style: groove;
+   border-color: honeydew;
+   padding: .2rem;
+}
+
+.hist_text{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(223,220,208,1) 0%, rgba(252,252,250,0.6054796918767507) 42%, rgba(223,220,208,1) 100%);
+    padding: .1rem;
+}
+
+.leaflet-top{
+    top:-.5rem;
+    background-color:rgba(126, 129, 190, .6);;
+}
+.leaflet-left{
+    right: 45%;
+}
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: rgba(255, 255, 255, 0.486);
+	border-radius: 5px;
+	}
