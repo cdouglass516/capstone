@@ -1,4 +1,33 @@
 .dialog {
   min-width: 15rem;
-  min-height: 5rem;
+  min-height: 7rem;
+}
+.exploreNashville{
+  background-color: #7E81BE;  
+  color: #7b4812; 
+}
+.container--login{
+  background-image: url('../../static/nashville.png');
+}
+.email_entry{
+  background-color: RGBA(126, 129, 190,.3);
+}
+.noBackground{
+background-color: rgba(18, 19, 19, 0);
+display: block;
+width: 100%;
+height: calc(1.5em + 0.75rem + 2px);
+padding: 0.375rem 0.75rem;
+font-size: 1rem;
+font-weight: 400;
+line-height: 1;
+color: #000000;
+background-clip: padding-box;
+border: 1px solid #070c11;
+border-radius: 0.25rem;
+transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+::placeholder {
+  color: rgb(20, 17, 17,.9);
+  opacity: 1; /* Firefox */
 }

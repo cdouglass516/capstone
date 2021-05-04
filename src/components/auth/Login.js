@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom";
+import {GetUserbyEmail} from "../../dataLayer/appAccesss";
 import "./Login.css"
 
 
@@ -10,16 +11,17 @@ export const Login = () => {
     const history = useHistory()
 
     const handleInputChange = (event) => {
+        if(event.target.id === "email"){
         const newUser = { ...loginUser }
         newUser[event.target.id] = event.target.value
         setLoginUser(newUser)
+    }
     }
 
 
     const existingUserCheck = () => {
         // If your json-server URL is different, please change it below!
-        return fetch(`http://localhost:8088/users?email=${loginUser.email}`)
-            .then(res => res.json())
+        return GetUserbyEmail(`${loginUser.email}`)
             .then(user => user.length ? user[0] : false)
     }
 
@@ -46,14 +48,27 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Explore Nashville</h1>
-                    <h2>Please sign in</h2>
+                    <div className="exploreNashville">
+                        <h1>Explore Nashville</h1>
+                        <h2>Please sign in</h2>
+                    </div>
+                    <div className='login_form'>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
+                        <label htmlFor="inputEmail"> Email address: </label>
                         <input type="email"
                             id="email"
-                            className="form-control"
+                            className="form-control email_entry"
                             placeholder="Email address"
+                            required autoFocus
+                            value={loginUser.email}
+                            onChange={handleInputChange} />
+                    </fieldset>
+                    <fieldset>
+                        <label htmlFor="inputPW"> Password: </label>
+                        <input type="password"
+                            id="password"
+                            className="form-control email_entry"
+                            placeholder="Password"
                             required autoFocus
                             value={loginUser.email}
                             onChange={handleInputChange} />
@@ -63,6 +78,7 @@ export const Login = () => {
                             Sign in
                         </button>
                     </fieldset>
+                    </div>
                 </form>
             </section>
             <section className="link--register">
