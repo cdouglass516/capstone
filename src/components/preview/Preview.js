@@ -7,9 +7,7 @@ import {UserSourced} from './UserSourced';
 import {PublicArt} from './PublicArt';
 import {Parks} from './Park';
 
-export const Preview = ({ isVisible, preview, setIsDetail, setIsPreview }) => {
-
-
+export const Preview = ({ isVisible, preview, setIsDetail, setIsPreview, hasHist, hasPa, hasPark, hasUser }) => {
 
   const openDetail = () => {
     setIsPreview(false);
@@ -26,10 +24,12 @@ export const Preview = ({ isVisible, preview, setIsDetail, setIsPreview }) => {
 
 
         <div className="preview__description">
-          <HistoricalMarker />
-          <UserSourced />
-          <PublicArt />
-          <Parks />
+          {hasHist && <HistoricalMarker />}
+          {hasPa && <PublicArt />}
+          {hasPark && <Parks />}
+          {hasUser && <UserSourced />}
+          
+          
 
         </div>
       <div className="preview__close" onClick={() => closePreview()}>

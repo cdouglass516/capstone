@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MapContainer, TileLayer, Marker, Popup, LayerGroup, LayersControl, MapConsumer, Circle, Rectangle,useMapEvents, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, LayerGroup, LayersControl, MapConsumer, Circle, Rectangle, useMapEvents } from "react-leaflet";
 import { LatLng, LatLngExpression } from "leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -12,15 +12,16 @@ import userIcon from '../../static/markers/userMarker.png';
 import cw from '../../static/cw_with_bg.png'
 import { getNashData } from '../../dataLayer/apiAccess';
 
-export const MapSpace = ({ pubArt,setPubArt,parks,setParks,hist,setHist,venues,setVenues,userAdds,setUserAdds, setIsPreview,setMarkerLatLng, markers,setMarkerConfirm }) => {
+export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, venues, setVenues, userAdds, setUserAdds, setIsPreview, setMarkerLatLng, markers, 
+                          setMarkerConfirm, setMapObj, histRef,paRef,parkRef, userRef, venueRef}) => {
   const defaultPosition = [36.1614754, -86.7783034]; // Paris position
+  
+  
+  const mapRef = React.createRef();
   // event handlers are here ///////////
   const [position, setPosition] = React.useState(LatLngExpression);
   const [hasClicked, setHasClicked] = React.useState(false);
-  const histRef = React.useRef();
-  const paRef = React.useRef();
-  const parkRef = React.useRef();
-  const userRef = React.useRef();
+
 
   /////////////////////
 
@@ -124,32 +125,20 @@ export const MapSpace = ({ pubArt,setPubArt,parks,setParks,hist,setHist,venues,s
     });
   }, []);
 
-  // const HandleHistClick =() =>{
-  //   const map = useMapEvents({
-  //     click(e) {
-  //   histRef.current.eachLayer(layer=>{
-  //         map.removeLayer(layer)})
-  //   }})
-  // }
-  function MapObj(){
-    //const map = useMap(encodeURI);
-    // histRef.current.eachLayer(layer =>{
-    //   map.addLayer(layer);
-    // })
-  }
+
   function AddMarkerToClick() {
     const map = useMapEvents({
       click(e) {
         setMarkerLatLng(e.latlng);
         setMarkerConfirm(true);
 
-         
+
       },
     })
-  
+
     return (
       <>
-        {markers.map(marker => 
+        {markers.map(marker =>
           <Marker position={marker}>
             <Popup>Marker is at {marker}</Popup>
           </Marker>
@@ -161,97 +150,91 @@ export const MapSpace = ({ pubArt,setPubArt,parks,setParks,hist,setHist,venues,s
 
   return (
     <>
-     
-    <div className="map_div">
-      <MapContainer id="mapComp" editable={true} center={defaultPosition} zoom={13} zoomControl={false} style={{ height: "90vh", width: "95vw" }}>
-     
-      <AddMarkerToClick />
-      
-        <LayersControl position="topright">
-          <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <LayersControl.Overlay name="Historical Markers">
-            <LayerGroup id='histLayer' ref={histRef}>
-              {hist.map((item, index) => (
-                <Marker position={[item.latitude, item.longitude]} icon={histICON} key={index}>
-                  <Popup>
-                    <div className="marker_div">
-                      {item.marker_name}<br />
+      <div id="pageDiv">
+        <div className="map_div">
+          <MapContainer id="mapComp" editable={true} center={defaultPosition} zoom={13} zoomControl={false} style={{ height: "90vh", width: "95vw" }} whenCreated={map => setMapObj(map)}>
+
+            <AddMarkerToClick />
+
+            <LayersControl position="topright">
+              <TileLayer
+                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <LayersControl.Overlay name="Historical Markers">
+                <LayerGroup id='histLayer' ref={histRef}>
+                  {hist.map((item, index) => (
+                    <Marker position={[item.latitude, item.longitude]} icon={histICON} key={index}>
+                      <Popup>
+                        <div className="marker_div">
+                          {item.marker_name}<br />
                       Year Erected:{item.year_erected}<br />
-                      <div className="hist_text">
-                        <p>{item.marker_text}</p> <br />
-                      </div>
-                      {item.location} <br />
-                      {item.civil_war_site && <img src={cw}></img>}
-                    </div>
-                  </Popup>
-                </Marker>
-              ))}
-            </LayerGroup>
-          </LayersControl.Overlay>
-          <LayersControl.Overlay name="Public Art">
-            <LayerGroup>
-              {pubArt.map((item, index) => (
-                <Marker position={[item.latitude, item.longitude]} icon={paICON} key={index}>
-                  <Popup>
-                    {item.title}<br />
-                    {item.latitude} and {item.longitude}
-                  </Popup>
-                </Marker>
-              ))}
-            </LayerGroup>
-          </LayersControl.Overlay>
-          <LayersControl.Overlay name="Parks">
-            <LayerGroup>
-              {parks.map((item, index) => (
-                <Marker position={[item.mapped_location.latitude, item.mapped_location.longitude]} icon={parkICON} key={index}>
-                  <Popup>
-                    {item.park_name}<br />
-                  </Popup>
-                </Marker>
-              ))}
-            </LayerGroup>
-          </LayersControl.Overlay>
-          <LayersControl.Overlay name="Venues">
-            <LayerGroup>
-              {venues.map((item, index) => (
-                <Marker position={[item.latitude, item.longitude]} icon={venICON} key={index}>
-                  <Popup>
-                    {item.name}<br />
-                    {item.description}
-                  </Popup>
-                </Marker>
-              ))}
-            </LayerGroup>
-          </LayersControl.Overlay>
-          <LayersControl.Overlay name="User Sourced">
-            <LayerGroup>
-              {userAdds.map((item, index) => (
-                <Marker position={[item.latitude, item.longitude]} icon={userICON} key={index}>
-                  <Popup>
-                    {item.name}<br />
-                    <b>User Rating</b> {Math.round(item.ratingsTotal / item.nbrReviews)}{String.fromCharCode(9733)}
-                  </Popup>
-                </Marker>
-              ))}
-            </LayerGroup>
-          </LayersControl.Overlay>
+                          <div className="hist_text">
+                            <p>{item.marker_text}</p> <br />
+                          </div>
+                          {item.location} <br />
+                          {item.civil_war_site && <img src={cw}></img>}
+                        </div>
+                      </Popup>
+                    </Marker>
+                  ))}
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay name="Public Art">
+                <LayerGroup id='paLayer' ref={paRef}>
+                  {pubArt.map((item, index) => (
+                    <Marker position={[item.latitude, item.longitude]} icon={paICON} key={index}>
+                      <Popup>
+                        {item.title}<br />
+                        {item.latitude} and {item.longitude}
+                      </Popup>
+                    </Marker>
+                  ))}
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay name="Parks">
+                <LayerGroup id='parkLayer' ref={parkRef}>
+                  {parks.map((item, index) => (
+                    <Marker position={[item.mapped_location.latitude, item.mapped_location.longitude]} icon={parkICON} key={index}>
+                      <Popup>
+                        {item.park_name}<br />
+                      </Popup>
+                    </Marker>
+                  ))}
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay name="Venues">
+                <LayerGroup id='venueLayer' ref={venueRef}>
+                  {venues.map((item, index) => (
+                    <Marker position={[item.latitude, item.longitude]} icon={venICON} key={index}>
+                      <Popup>
+                        {item.name}<br />
+                        {item.description}
+                      </Popup>
+                    </Marker>
+                  ))}
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay name="User Sourced">
+                <LayerGroup id='userLayer' ref={userRef}>
+                  {userAdds.map((item, index) => (
+                    <Marker position={[item.latitude, item.longitude]} icon={userICON} key={index}>
+                      <Popup>
+                        {item.name}<br />
+                        <b>User Rating</b> {Math.round(item.ratingsTotal / item.nbrReviews)}{String.fromCharCode(9733)}
+                      </Popup>
+                    </Marker>
+                  ))}
+                </LayerGroup>
+              </LayersControl.Overlay>
 
-        </LayersControl>
-        
-      </MapContainer>
+            </LayersControl>
+          </MapContainer>
 
-    </div>
+        </div>
+      </div>
     </>
   );
 };
 
-// {coords.map(({ lat, lng }, index) => (
-//     <Marker position={[lat, lng]} icon={customMarker} key={index}>
-//       <Popup>
-//         {index + 1} is for popup with lat: {lat} and lon {lng}
-//       </Popup>
-//     </Marker>
-//   ))}
+
