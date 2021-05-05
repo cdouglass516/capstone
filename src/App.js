@@ -24,6 +24,17 @@ export const App = () => {
   const [markers, setMarkers] = React.useState([]);
   const [markerLatLng, setMarkerLatLng] = React.useState(null);
   const [preview, setPreview] = React.useState('');
+  const [mapObj, setMapObj] = React.useState(null);
+  const [hasHist, setHasHist] = React.useState(false);
+  const [hasPa, setHasPa] = React.useState(false);
+  const [hasPark, setHasPark] = React.useState(false);
+  const [hasUser, setHasUser] = React.useState(false);
+  const [hasVenue, setHasVenue] = React.useState(false);
+  const venueRef = React.useRef(null);
+  const histRef = React.useRef(null);
+  const paRef = React.useRef(null);
+  const parkRef = React.useRef(null);
+  const userRef = React.useRef(null);
   const closeMarker = () => {
     setIsMarker(false);
   }
@@ -69,6 +80,12 @@ export const App = () => {
                 preview={preview}
                 setIsDetail={setIsDetail}
                 setIsPreview={setIsPreview}
+                hasHist={hasHist}
+                hasPa={hasPa}
+                hasPark={hasPark}
+                hasUser={hasUser}
+                hasVenue={hasVenue}
+
               />
               <Detail
                 isDetail={isDetail}
@@ -80,7 +97,8 @@ export const App = () => {
                 closeMarker={closeMarker}
                 setMarkerConfirm={setMarkerConfirm}
               />
-              <Nav setIsPreview={setIsPreview} setPreview={setPreview}/>
+              <Nav setIsPreview={setIsPreview} setPreview={setPreview} mapObj={mapObj} histRef={histRef} paRef={paRef} parkRef={parkRef} userRef={userRef} venueRef={venueRef}
+                hasHist={hasHist} setHasHist={setHasHist} hasPa={hasPa} setHasPa={setHasPa} hasPark={hasPark} setHasPark={setHasPark} hasUser={hasUser} setHasUser={setHasUser} hasVenue={hasVenue} setHasVenue={setHasVenue} />
               {markerConfirm && <AddMarkerConfirmation markerLatLng={markerLatLng} />}
 
               <MapSpace
@@ -99,6 +117,12 @@ export const App = () => {
                 setMarkerConfirm={setMarkerConfirm}
                 setMarkerLatLng={setMarkerLatLng}
                 setIsPreview={setIsPreview}
+                setMapObj={setMapObj}
+                histRef={histRef}
+                paRef={paRef}
+                parkRef={parkRef}
+                userRef={userRef}
+                venueRef={venueRef}
               />
 
             </>
