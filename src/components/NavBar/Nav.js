@@ -26,11 +26,11 @@ export const Nav = (props) => {
             props.setIsPreview(true);
           }else{
             props.histRef.current.eachLayer(layer=>{
-              props.mapObj.removeLayer(layer)})
+              props.mapObj.removeLayer(layer)});
+              props.mapObj.flyTo(props.defaultPosition, 13);
               props.setHasHist(!props.hasHist);
               props.setIsPreview(false);
           }
-          
 	    }
         break;
       case 'art':
@@ -43,7 +43,8 @@ export const Nav = (props) => {
             props.setIsPreview(true);
           }else{
             props.paRef.current.eachLayer(layer=>{
-              props.mapObj.removeLayer(layer)})
+              props.mapObj.removeLayer(layer)});
+              props.mapObj.flyTo(props.defaultPosition, 13);
               props.setHasPa(!props.hasPa);
               props.setIsPreview(false);
           }
@@ -59,7 +60,8 @@ export const Nav = (props) => {
             props.setIsPreview(true);
           }else{
             props.parkRef.current.eachLayer(layer=>{
-              props.mapObj.removeLayer(layer)})
+              props.mapObj.removeLayer(layer)});
+              props.mapObj.flyTo(props.defaultPosition, 13);
               props.setHasPark(!props.hasPark);
               props.setIsPreview(false);
           }
@@ -75,7 +77,8 @@ export const Nav = (props) => {
             props.setIsPreview(true);
           }else{
             props.userRef.current.eachLayer(layer=>{
-              props.mapObj.removeLayer(layer)})
+              props.mapObj.removeLayer(layer)});
+              props.mapObj.flyTo(props.defaultPosition, 13);
               props.setHasUser(!props.hasUser);
               props.setIsPreview(false);
           }
@@ -109,31 +112,21 @@ export const Nav = (props) => {
       <ul className="nav nav-pills nav-fill nb_width">
         <li className="nav-item">
           <strong>Explore Nasville</strong>
-          {/* <CgPlayListSearch
-            style={{
-              fontSize: "3rem",
-              verticalAlign: "middle",
-              position: "absolute",
-              left: "1rem",
-              top: ".2rem",
-            }}
-            onClick={() => props.setIsPreview(true)}
-          ></CgPlayListSearch> */}
         </li>
         <li className="nav-item ">
-          <a className="nav-link navbar_link "  href="#" alt="Nashville Venues" onClick={() => handleMarkerLink('venue')}><img className="nav-img" src={venue} alt="Historical Markers"/>Nashville Venues</a>
+          <a className="nav-link navbar_link "  href="#" alt="Nashville Venues" onClick={() => handleMarkerLink('venue')}><img className="nav-img" src={venue} alt="Nashville Venues"/>Nashville Venues</a>
         </li>
         <li className="nav-item ">
-          <img className="nav-img" src={hist} alt="Historical Markers" onClick={() => handleMarkerLink('hist')}></img>
+        <a className="nav-link navbar_link "  href="#" alt="Nashville Venues" onClick={() => handleMarkerLink('hist')}><img className="nav-img" src={hist} alt="Historical Markers"/>Historical Markers</a>
         </li>
         <li className="nav-item ">
-          <img className="nav-img" src={pa} alt="Public Art" onClick={() => handleMarkerLink('art')}></img>
+        <a className="nav-link navbar_link "  href="#" alt="Nashville Venues" onClick={() => handleMarkerLink('art')}><img className="nav-img" src={pa} alt="Public Art" onClick={() => handleMarkerLink('art')}></img>Public Art</a>
         </li>
         <li className="nav-item ">
-          <img className="nav-img" src={park} alt="Parks" onClick={() => handleMarkerLink('park')}></img>
+        <a className="nav-link navbar_link "  href="#" alt="Nashville Venues" onClick={() => handleMarkerLink('park')}><img className="nav-img" src={park} alt="Parks" onClick={() => handleMarkerLink('park')}></img>Parks</a>
         </li>
         <li className="nav-item ">
-          <img className="nav-img" src={user} alt="User Sourced" onClick={() => handleMarkerLink('user')}></img>
+        <a className="nav-link navbar_link "  href="#" alt="Nashville Venues" onClick={() => handleMarkerLink('user')}><img className="nav-img" src={user} alt="User Sourced" onClick={() => handleMarkerLink('user')}></img>User Sourced</a>
         </li>
         <li className="nav-item logOff">
           <Link className="nav-link navbar_link " to="/login">Login</Link>

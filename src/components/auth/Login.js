@@ -4,7 +4,7 @@ import {GetUserbyEmail} from "../../dataLayer/appAccesss";
 import "./Login.css"
 
 
-export const Login = () => {
+export const Login = ({setLoggedUserId,loggedUserId}) => {
     const [loginUser, setLoginUser] = useState({ email: "" })
     const [existDialog, setExistDialog] = useState(false)
 
@@ -33,6 +33,8 @@ export const Login = () => {
                 if (exists) {
                     // The user id is saved under the key nutshell_user in session Storage. Change below if needed!
                     sessionStorage.setItem("exploreNashvegas_user", exists.id)
+                    setLoggedUserId(parseInt(exists.id))
+                    alert(loggedUserId);
                     history.push("/")
                 } else {
                     setExistDialog(true)

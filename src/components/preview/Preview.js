@@ -6,15 +6,19 @@ import { HistoricalMarker } from "./HistoricalMarker";
 import {UserSourced} from './UserSourced';
 import {PublicArt} from './PublicArt';
 import {Parks} from './Park';
+import {Venue} from './Venue'
 
-export const Preview = ({ isVisible, preview, setIsDetail, setIsPreview, hasHist, hasPa, hasPark, hasUser }) => {
+export const Preview = ({ isVisible, hist, setIsPreview, hasHist, hasPa, hasPark, hasUser, hasVenue, venues, mapObj, pubArt,parks, users }) => {
 
-  const openDetail = () => {
-    setIsPreview(false);
-    setIsDetail(true);
-  }
   const closePreview = () => {
     setIsPreview(false);
+  }
+
+  const returnRandomNumber =(i) =>{
+    if(Number.isInteger(i) ){
+      return Math.floor(Math.random() * i); 
+    }
+    return null;
   }
   return (
     <div
@@ -22,12 +26,13 @@ export const Preview = ({ isVisible, preview, setIsDetail, setIsPreview, hasHist
         }`}
     >
 
-
+        <div className="emptyDiv"></div>
         <div className="preview__description">
-          {hasHist && <HistoricalMarker />}
-          {hasPa && <PublicArt />}
-          {hasPark && <Parks />}
-          {hasUser && <UserSourced />}
+          {hasHist && <HistoricalMarker hist={hist} returnRandomNumber={returnRandomNumber} mapObj={mapObj}/>}
+          {hasPa && <PublicArt pubArt={pubArt} returnRandomNumber={returnRandomNumber} mapObj={mapObj} />}
+          {hasPark && <Parks  parks={parks} returnRandomNumber={returnRandomNumber} mapObj={mapObj} />}
+          {hasUser && <UserSourced  users={users} returnRandomNumber={returnRandomNumber} mapObj={mapObj} />}
+          {hasVenue && <Venue venues={venues} mapObj={mapObj}/>}
           
           
 

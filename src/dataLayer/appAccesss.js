@@ -56,6 +56,40 @@ export const EditUser = async (param) => {
         console.log(e);
         return 'error in addUser';
     }
-
-
 }
+
+export const AddNewMarker = async (param) =>{
+    return fetch(`${localURL}userMarkers`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(param)
+    }).then(response => response.json())
+    .then(resp =>{return resp} )
+}
+
+export const GetComments = (id) => { //Get comments for a particular marker
+    return fetch(`${localURL}comments?userMarkerId=${id}&_expand=user`)
+    .then(res => res.json())
+  }
+
+  export const EditComment = (comment) =>{
+    return fetch(`${localURL}comments/${comment.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(comment)
+      }).then(data => data.json());
+  }
+
+  export const AddComment = (comment) =>{
+    return fetch(`${localURL}comments`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(comment)
+    }).then(response => response.json())
+  }

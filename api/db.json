@@ -69,14 +69,44 @@
     {
       "id": 1,
       "userId": 1,
-      "markerSourceId": 1,
+      "userMarkerId": 1,
       "commentText": "This is ridiculous"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "userMarkerId": 1,
+      "commentText": ""
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "userMarkerId": 1,
+      "commentText": "My comment was not saved. The place was to crowded"
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "userMarkerId": 1,
+      "commentText": "Drinks were good the prices reasonable"
+    },
+    {
+      "id": 5,
+      "userId": 0,
+      "userMarkerId": 1,
+      "commentText": "This is what I meant"
+    },
+    {
+      "id": 6,
+      "userId": 0,
+      "userMarkerId": 2,
+      "commentText": "Good coffee cream"
     }
   ],
   "userMarkers": [
     {
       "id": 1,
-      "markerSourcesId": 1,
+      "userId": 0,
       "lastModifieddate": "04/22/2021",
       "type": "Bar",
       "name": "The Red Door East",
@@ -88,8 +118,79 @@
       "link": "http://www.thereddoorsaloon.com/east-nashville.html",
       "nbrReviews": 11,
       "ratingsTotal": 28,
-      "latitude": 36.1783277,
-      "longitude": -86.7522405
+      "latitude": 36.1783375,
+      "longitude": -86.7500539
+    },
+    {
+      "id": 2,
+      "userId": 0,
+      "lastModifieddate": "04/22/2021",
+      "type": "Restaurant",
+      "name": "Star Baegel",
+      "address": "",
+      "city": "Nashville",
+      "state": "TN",
+      "zip": "",
+      "description": "A really goo baegel",
+      "link": "",
+      "nbrReviews": 11,
+      "ratingsTotal": 44,
+      "latitude": 36.14157200831463,
+      "longitude": -86.84123820512465
+    },
+    {
+      "id": 3,
+      "markerSourcesId": 3,
+      "userId": 2,
+      "lastModifieddate": 1620308189165,
+      "type": "Restaurant",
+      "name": "TKO",
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "description": "This is a very good Chinese fusion. Very Fresh ingedients ",
+      "link": "",
+      "latitude": 36.22438505013363,
+      "longitude": -86.72521591186523,
+      "nbrReviews": 11,
+      "ratingsTotal": 44
+    },
+    {
+      "id": 4,
+      "markerSourcesId": 3,
+      "userId": 2,
+      "lastModifieddate": 1620308632547,
+      "type": "coffee shop",
+      "name": "Sidekicks Cafe",
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "description": "Good coffee and food for lunch and breakfast only",
+      "link": "https://www.sidekickscafemadison.com/",
+      "latitude": 36.24804797741572,
+      "longitude": -86.7348052455418,
+      "nbrReviews": 1,
+      "ratingsTotal": "4"
+    },
+    {
+      "id": 5,
+      "markerSourcesId": 3,
+      "userId": 0,
+      "lastModifieddate": 1620328557143,
+      "type": "Bar",
+      "name": "Slow Bar",
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "description": "Good dive",
+      "link": "",
+      "latitude": 36.18531518268624,
+      "longitude": -86.7459956457426,
+      "nbrReviews": 1,
+      "ratingsTotal": "3"
     }
   ],
   "imagesAvailable": [
@@ -98,13 +199,6 @@
       "imageLink": "",
       "altText": "No image",
       "userMarkerId": 1
-    }
-  ],
-  "markerSources": [
-    {
-      "id": 1,
-      "sourceName": "user",
-      "sourceId": 1
     }
   ],
   "venues": [

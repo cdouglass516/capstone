@@ -4,26 +4,35 @@
     width: 50%;
     height: 70vh;
     overflow-y: scroll;
-    background-color: rgba(255,255,255,.6);
-    top: 0;
+    background-color: 	rgba(126, 129, 190,.01);
+    color: #7b4812;
+    top:25px;
     left: -100%;
     transition: all 0.2s ease-in-out;
   }
-  
+  .emptyDiv{
+    height:5rem;
+    width:100%;
+    background-color: 	rgba(126, 129, 190,.1);
+  }
   .preview__container--active {
     left: 0;
+    top: 5rem;
   }
   
   .preview__description__container {
+    position: absolute;
+    left: .2rem;
+    top: 5rem;
     padding: 1rem;
   }
   
   .preview__close {
     position: absolute;
     right: .1rem;
-    top: .1rem;
+    top: 5rem;
     font-size: 2rem;
-    color: rgb(230, 11, 11);
+    color: rgb(255, 2, 2);
     cursor: pointer;
   }
   
@@ -39,6 +48,7 @@
     font-size: 1rem;
     margin: 1rem auto;
     cursor: pointer;
+    top:15rem;
   }
   
   .preview__title {
@@ -48,8 +58,9 @@
   }
   
   .preview__description {
+    background-color: 	rgba(126, 129, 190,.7);
     line-height: 1.5rem;
-    color: #484848;
+    color: #7b4812;
   }
   
   .preview__picture {
