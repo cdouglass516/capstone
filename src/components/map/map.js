@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MapContainer, TileLayer, Marker, Popup, LayerGroup, LayersControl, MapConsumer, Circle, Rectangle, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, LayerGroup, LayersControl, useMapEvents } from "react-leaflet";
 import { LatLng, LatLngExpression } from "leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -11,12 +11,13 @@ import parkIcon from '../../static/markers/parkMarker.png';
 import userIcon from '../../static/markers/userMarker.png';
 import cw from '../../static/cw_with_bg.png'
 import { getNashData } from '../../dataLayer/apiAccess';
+import { GetComments } from '../../dataLayer/appAccesss';
 
-export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, venues, setVenues, userAdds, setUserAdds, setIsPreview, setMarkerLatLng, markers, 
-                          setMarkerConfirm, setMapObj, histRef,paRef,parkRef, userRef, venueRef}) => {
+export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, venues, setVenues, userAdds, setUserAdds, setComments, comments, setMarkerLatLng, markers,
+  setMarkerConfirm, setMapObj, histRef, paRef, parkRef, userRef, venueRef, setDetail, setIsDetail }) => {
   const defaultPosition = [36.1614754, -86.7783034]; // Paris position
-  
-  
+
+
   const mapRef = React.createRef();
   // event handlers are here ///////////
   const [position, setPosition] = React.useState(LatLngExpression);
@@ -124,15 +125,21 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
       iconUrl: paIcon
     });
   }, []);
-
+  const handleUserClick = (marker) =>{
+    setDetail({...marker.item});
+      GetComments(marker.item.id).then(response => {
+        setComments(response)
+        return response;
+      }).then(data => {
+        setIsDetail(true);
+      })
+    }
 
   function AddMarkerToClick() {
     const map = useMapEvents({
       click(e) {
         setMarkerLatLng(e.latlng);
         setMarkerConfirm(true);
-
-
       },
     })
 
@@ -169,7 +176,7 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
                         <div className="marker_div">
                           {item.marker_name}<br />
                       Year Erected:{item.year_erected}<br />
-                          <div className="hist_text">
+                          <div className="popup_text">
                             <p>{item.marker_text}</p> <br />
                           </div>
                           {item.location} <br />
@@ -185,8 +192,15 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
                   {pubArt.map((item, index) => (
                     <Marker position={[item.latitude, item.longitude]} icon={paICON} key={index}>
                       <Popup>
-                        {item.title}<br />
-                        {item.latitude} and {item.longitude}
+                        <div className="marker_div">
+                          <strong>{item.title}</strong>
+                          <div className="popup_text">
+                            <p>by {item.first_name} {item.last_name}</p>
+                            <p>{item.type} in medium:{item.medium}</p>
+                            <p>location:{item.location}</p>
+                          </div>
+
+                        </div>
                       </Popup>
                     </Marker>
                   ))}
@@ -197,7 +211,20 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
                   {parks.map((item, index) => (
                     <Marker position={[item.mapped_location.latitude, item.mapped_location.longitude]} icon={parkICON} key={index}>
                       <Popup>
-                        {item.park_name}<br />
+                        <div className="marker_div">
+                          <strong>{item.park_name}</strong>
+                          <div className="popup_text">
+                            <p>{item.notes}</p>
+                            <p>location:{item.mapped_location.human_address}</p>
+                            <div className="popupDetail">
+                              <label>ADA Accessible: {item.ada_accessible}</label>
+                              <label>Restrooms: {item.restrooms_available}</label>
+
+
+                            </div>
+                          </div>
+
+                        </div>
                       </Popup>
                     </Marker>
                   ))}
@@ -208,8 +235,15 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
                   {venues.map((item, index) => (
                     <Marker position={[item.latitude, item.longitude]} icon={venICON} key={index}>
                       <Popup>
-                        {item.name}<br />
-                        {item.description}
+                        <div className="marker_div">
+                          <strong>{item.name}</strong>
+                          <div className="popup_text">
+                            <p>{item.description}</p>
+                            <p>location:{item.location}</p>
+                            <a src={item.link} alt={item.name}>{item.name}</a>
+                            <img src={item.image} alt={item.name} className="popupImage"></img>
+                          </div>
+                        </div>
                       </Popup>
                     </Marker>
                   ))}
@@ -220,8 +254,17 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
                   {userAdds.map((item, index) => (
                     <Marker position={[item.latitude, item.longitude]} icon={userICON} key={index}>
                       <Popup>
-                        {item.name}<br />
-                        <b>User Rating</b> {Math.round(item.ratingsTotal / item.nbrReviews)}{String.fromCharCode(9733)}
+                        <div className="marker_div">
+                          <strong>{item.name}</strong>
+                          <div className="popup_text">
+                            <p>{item.description}</p>
+                            <p>What:{item.type}</p>
+                            <div className="popupDetail">
+                              <b>User Rating</b> {Number.parseFloat(item.ratingsTotal / item.nbrReviews).toFixed(1)}{String.fromCharCode(9733)}
+                            </div>
+                            <a href="#" onClick={() => {handleUserClick({item})}} > More Info</a>
+                          </div>
+                        </div>
                       </Popup>
                     </Marker>
                   ))}

@@ -12,6 +12,7 @@ import { MapSpace } from './components/map/map';
 
 
 export const App = () => {
+  const defaultPosition = [36.1614754, -86.7783034]; // Paris position
   const [isDetail, setIsDetail] = React.useState(false);
   const [isPreview, setIsPreview] = React.useState(false);
   const [isMarker, setIsMarker] = React.useState(false);
@@ -20,9 +21,11 @@ export const App = () => {
   const [parks, setParks] = React.useState([]);
   const [hist, setHist] = React.useState([]);
   const [venues, setVenues] = React.useState([]);
+  const [detail, setDetail] = React.useState({});
   const [userAdds, setUserAdds] = React.useState([]);
   const [markers, setMarkers] = React.useState([]);
-  const [markerLatLng, setMarkerLatLng] = React.useState(null);
+  const [comments, setComments] = React.useState([]); 
+  const [markerLatLng, setMarkerLatLng] = React.useState({});
   const [preview, setPreview] = React.useState('');
   const [mapObj, setMapObj] = React.useState(null);
   const [hasHist, setHasHist] = React.useState(false);
@@ -30,21 +33,26 @@ export const App = () => {
   const [hasPark, setHasPark] = React.useState(false);
   const [hasUser, setHasUser] = React.useState(false);
   const [hasVenue, setHasVenue] = React.useState(false);
+  const [loggedUserId, setLoggedUserId] = React.useState(parseInt(sessionStorage.getItem("exploreNashvegas_user")));
   const venueRef = React.useRef(null);
   const histRef = React.useRef(null);
   const paRef = React.useRef(null);
   const parkRef = React.useRef(null);
   const userRef = React.useRef(null);
+  
   const closeMarker = () => {
     setIsMarker(false);
   }
   const handleMarkerBtn = () => {
     setIsMarker(true);
+    setMarkerConfirm(false);
   }
   const AddMarkerConfirmation = ({ markerLatLng }) => {
     return (
       <div>
+        <div>
         <label>Add a new Marker? at lat:{Math.round(markerLatLng.lat, 4)} &&  lng:{Math.round(markerLatLng.lng, 4)}</label>
+        </div>
         <button onClick={handleMarkerBtn}>Yes</button>
         <button onClick={() => setMarkerConfirm(false)}>Cancel</button>
       </div>
@@ -60,12 +68,6 @@ export const App = () => {
       name: 'test'
     }
   }
-  const detail = () => {
-    return {
-      id: 0,
-      data: {}
-    }
-  }
 
   return (<>
     <Route
@@ -76,53 +78,24 @@ export const App = () => {
 
 
               <Preview
-                isVisible={isPreview}
-                preview={preview}
-                setIsDetail={setIsDetail}
-                setIsPreview={setIsPreview}
-                hasHist={hasHist}
-                hasPa={hasPa}
-                hasPark={hasPark}
-                hasUser={hasUser}
-                hasVenue={hasVenue}
-
+                isVisible={isPreview} preview={preview} setIsDetail={setIsDetail} setIsPreview={setIsPreview} hasHist={hasHist} hasPa={hasPa} users={userAdds}
+                hasPark={hasPark} hasUser={hasUser} hasVenue={hasVenue} venues={venues} mapObj={mapObj}hist={hist} pubArt={pubArt} parks={parks}
               />
               <Detail
-                isDetail={isDetail}
-                detail={detail}
-                closeDetail={closeDetail} />
+                isDetail={isDetail} detail={detail} closeDetail={closeDetail} comments={comments}/>
               <AddMarker
-                isMarker={isMarker}
-                marker={detail}
-                closeMarker={closeMarker}
-                setMarkerConfirm={setMarkerConfirm}
+                isMarker={isMarker} setIsMarker={setIsMarker} marker={detail} setUserAdds={setUserAdds} markerLatLng={markerLatLng}
               />
-              <Nav setIsPreview={setIsPreview} setPreview={setPreview} mapObj={mapObj} histRef={histRef} paRef={paRef} parkRef={parkRef} userRef={userRef} venueRef={venueRef}
-                hasHist={hasHist} setHasHist={setHasHist} hasPa={hasPa} setHasPa={setHasPa} hasPark={hasPark} setHasPark={setHasPark} hasUser={hasUser} setHasUser={setHasUser} hasVenue={hasVenue} setHasVenue={setHasVenue} />
+              <Nav setIsPreview={setIsPreview} setPreview={setPreview} mapObj={mapObj} histRef={histRef} paRef={paRef} parkRef={parkRef} userRef={userRef} venueRef={venueRef} 
+              defaultPosition={defaultPosition} hasHist={hasHist} setHasHist={setHasHist} hasPa={hasPa} setHasPa={setHasPa} hasPark={hasPark} setHasPark={setHasPark} 
+              hasUser={hasUser} setHasUser={setHasUser} hasVenue={hasVenue} setHasVenue={setHasVenue} />
               {markerConfirm && <AddMarkerConfirmation markerLatLng={markerLatLng} />}
 
               <MapSpace
-                pubArt={pubArt}
-                setPubArt={setPubArt}
-                parks={parks}
-                setParks={setParks}
-                hist={hist}
-                setHist={setHist}
-                venues={venues}
-                setVenues={setVenues}
-                userAdds={userAdds}
-                setUserAdds={setUserAdds}
-                markers={markers}
-                setMarkers={setMarkers}
-                setMarkerConfirm={setMarkerConfirm}
-                setMarkerLatLng={setMarkerLatLng}
-                setIsPreview={setIsPreview}
-                setMapObj={setMapObj}
-                histRef={histRef}
-                paRef={paRef}
-                parkRef={parkRef}
-                userRef={userRef}
-                venueRef={venueRef}
+                pubArt={pubArt} setPubArt={setPubArt} parks={parks} setParks={setParks} hist={hist} setHist={setHist} comments={comments} setComments={setComments}
+                venues={venues} setVenues={setVenues} userAdds={userAdds} setUserAdds={setUserAdds}  markers={markers}  setIsDetail={setIsDetail} 
+                setMarkers={setMarkers} setMarkerConfirm={setMarkerConfirm} setMarkerLatLng={setMarkerLatLng} setIsPreview={setIsPreview}
+                setMapObj={setMapObj} histRef={histRef}paRef={paRef} parkRef={parkRef}  userRef={userRef} venueRef={venueRef} setDetail={setDetail}
               />
 
             </>
@@ -134,7 +107,7 @@ export const App = () => {
     />
 
     <Route path="/login">
-      <Login />
+      <Login setLoggedUserId={setLoggedUserId} loggedUserId={loggedUserId}/>
     </Route>
     <Route path="/register">
       <Register />

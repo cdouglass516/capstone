@@ -30,8 +30,15 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(171,199,197,1) 0%, rg
    border-color: honeydew;
    padding: .2rem;
 }
-
-.hist_text{
+.popupImage{
+    height: 10rem;
+    object-fit: cover;
+}
+.popupDetail{
+    display:flex;
+    
+}
+.popup_text{
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(223,220,208,1) 0%, rgba(252,252,250,0.6054796918767507) 42%, rgba(223,220,208,1) 100%);
     padding: .1rem;
