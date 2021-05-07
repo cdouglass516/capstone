@@ -22,7 +22,7 @@
   .marker__close {
     position: absolute;
     right: 1rem;
-    top: 8.2rem;
+    bottom: 8.8rem;
     font-size: 1.5rem;
     color: rgb(241, 4, 4);
     cursor: pointer;
@@ -57,7 +57,7 @@
   }
 
   .emptyDiv{
-    height:8.6rem;
+    height:9.6rem;
     width:100%;
     background-color: 	rgba(126, 129, 190,.1);
   }

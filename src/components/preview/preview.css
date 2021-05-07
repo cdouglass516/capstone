@@ -6,12 +6,12 @@
     overflow-y: scroll;
     background-color: 	rgba(126, 129, 190,.01);
     color: #7b4812;
-    top:25px;
+    top:10%;
     left: -100%;
     transition: all 0.2s ease-in-out;
   }
   .emptyDiv{
-    height:5rem;
+    height:5.8rem;
     width:100%;
     background-color: 	rgba(126, 129, 190,.1);
   }
@@ -69,7 +69,10 @@
     background-size: cover;
     background-position: center;
   }
-  
+  .preview_link{
+    color: #7b4812;
+    font-weight: 600;
+  }
   
   @media only screen and (min-width: 768px) {
     .preview__container {

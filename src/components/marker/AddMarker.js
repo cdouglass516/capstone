@@ -1,46 +1,31 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Col, Row, RangeSlider, Form, Button } from 'react-bootstrap';
 import { BsFillXSquareFill } from "react-icons/bs";
 import { AddNewMarker } from '../../dataLayer/appAccesss';
-import { getNashData} from '../../dataLayer/apiAccess'
+import { getNashData } from '../../dataLayer/apiAccess'
 import './addMarker.css'
 
 export const AddMarker = ({ isMarker, setIsMarker, marker, setUserAdds, markerLatLng }) => {
+  const [sliderVal, setSliderVal] = React.useState(0);
   const [markerObj, setMarkerObj] = React.useState({
-    id: 0, markerSourcesId: 3, userId: 0, lastModifieddate: Date.now(), type: "", name: "", address: "", city: "", state: "", zip: "", 
-    description: "", link: "",latitude: 0, longitude: 0,  nbrReviews: 1, ratingsTotal: 0
+    id: 0, markerSourcesId: 3, userId: 0, lastModifieddate: Date.now(), type: "", name: "", address: "", city: "", state: "", zip: "",
+    description: "", link: "", latitude: 0, longitude: 0, nbrReviews: 1, ratingsTotal: 0
   })
   const closeAddMarker = () => {
     setIsMarker(false);
   }
   const handleChange = (e) => {
     e.preventDefault();
-    const { name, value } = e.target;
+    const { id, value } = e.target;
     //let formErrors = this.state.formErrors;
-
-    switch (name) {
+    switch (id) {
       case 'type':
         setMarkerObj({ ...markerObj, type: value });
 
         break;
       case 'name':
         setMarkerObj({ ...markerObj, name: value });
-        break;
-      case 'address':
-        setMarkerObj({ ...markerObj, address: value });
-
-        break;
-      case 'city':
-        setMarkerObj({ ...markerObj, city: value });
-
-        break;
-      case 'state':
-        setMarkerObj({ ...markerObj, state: value });
-
-        break;
-      case 'zip':
-        setMarkerObj({ ...markerObj, zip: value });
-
         break;
       case 'descr':
         setMarkerObj({ ...markerObj, description: value });
@@ -50,34 +35,34 @@ export const AddMarker = ({ isMarker, setIsMarker, marker, setUserAdds, markerLa
         setMarkerObj({ ...markerObj, link: value });
 
         break;
-        case 'ratingsTotal':
-          setMarkerObj({ ...markerObj, ratingsTotal: value });
-  
-          break;
+      case 'ratingsTotal':
+        setMarkerObj({ ...markerObj, ratingsTotal: value });
+        setSliderVal(value);
+        break;
       default:
         break;
     }
   }
   const HandleSubmit = () => {
     let user = parseInt(sessionStorage.getItem("exploreNashvegas_user"));
-    let NewMarker = {...markerObj};
+    let NewMarker = { ...markerObj };
     NewMarker.userId = user;
     NewMarker.latitude = markerLatLng.lat;
     NewMarker.longitude = markerLatLng.lng;
-      AddNewMarker(NewMarker).then(resp => {
-          getNashData('user').then(response => {
-            response.forEach((item, index) => {
-              if (item.longitude === undefined) {
-                response.splice(index, 1)
-              }
-            })
-            return response;
-          }).then(data => {
-            setUserAdds(data);
-          })
+    AddNewMarker(NewMarker).then(resp => {
+      getNashData('user').then(response => {
+        response.forEach((item, index) => {
+          if (item.longitude === undefined) {
+            response.splice(index, 1)
+          }
+        })
+        return response;
+      }).then(data => {
+        setUserAdds(data);
+      })
 
-        return resp;
-      });
+      return resp;
+    });
   }
   return (
     <div
@@ -90,93 +75,59 @@ export const AddMarker = ({ isMarker, setIsMarker, marker, setUserAdds, markerLa
           className="marker__picture"
         ></div> */}
       <div className="marker__description__container">
-        <div className="marker__description"><h3>ADD MARKER PAGE</h3>
-          <form onSubmit={HandleSubmit}>
-            <div>
-              <label htmlFor='type'>Type</label>
-              <input
-                name='type'
-                placeholder='Type'
+        <div className="marker__description addMarker_form"><h3>ADD MARKER PAGE</h3>
+          <Form onSubmit={HandleSubmit}>
+            <Form.Group>
+              <Form.Label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
+                Type
+  </Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                as="select"
+                className="my-1 mr-sm-2"
+                id="type"
                 value={markerObj.type}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor='name'>Name</label>
-              <input
-                name='name'
-                placeholder='Name'
-                value={markerObj.name}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor='address'>Address</label>
-              <input
-                name='address'
-                placeholder='Address'
-                value={markerObj.address}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor='city'>City</label>
-              <input
-                name='city'
-                placeholder='City'
-                value={markerObj.city}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor='state'>City</label>
-              <input
-                name='state'
-                placeholder='State'
-                value={markerObj.state}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor='zip'>Zip Code</label>
-              <input
-                name='zip'
-                placeholder='City'
-                value={markerObj.zip}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor='descr'>Description</label>
-              <input
-                name='descr'
-                placeholder='Description'
-                value={markerObj.description}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor='descr'>Add Link</label>
-              <input
-                name='link'
-                placeholder='Link'
-                value={markerObj.link}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor='ratingsTotal'>Rate 1-4 this place</label>
-              <input
-                name='ratingsTotal'
-                placeholder='Rate This'
-                value={markerObj.rate}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <button type="submit">Create Marker</button>
-            </div>
-          </form>
+                custom
+              >
+                <option value="">Choose...</option>
+                <option value="bar">Bar</option>
+                <option value="cs">Coffee Shop</option>
+                <option value="cafe">Cafe</option>
+                <option value="restaurant">Restaurant</option>
+                <option value="store">Store</option>
+                <option value="Music Venue">Music Venue</option>
+                <option value="store">Store</option>
+                <option value="other">Other</option>
+              </Form.Control>
+
+              <Form.Label>Name</Form.Label>
+              <Form.Control type="text" placeholder="Name" onChange={handleChange} id="name" />
+            </Form.Group>
+
+
+            <Form.Group>
+              <Form.Label>Example textarea</Form.Label>
+              <Form.Control as="textarea" rows={3} placeholder="Enter Description" onChange={handleChange} id="description" />
+            </Form.Group>
+            <Form.Group >
+              <Form.Label>Link</Form.Label>
+              <Form.Control type="link" placeholder="Link" id="link" />
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Col xs="9">
+                <Form.Label>Range</Form.Label>
+                <Form.Control type="range" value={sliderVal} id="ratingsTotal"
+                  onChange={handleChange} />
+              </Col>
+              <Col xs="3">
+                <Form.Control value={sliderVal} />
+              </Col>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+  </Button>
+          </Form>
+
         </div>
 
         <div style={{ display: 'flex' }}>

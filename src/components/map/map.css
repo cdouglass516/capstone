@@ -31,8 +31,9 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(171,199,197,1) 0%, rg
    padding: .2rem;
 }
 .popupImage{
-    height: 10rem;
-    object-fit: cover;
+    height: 9rem;
+    width: 14rem;
+    object-fit:fill;
 }
 .popupDetail{
     display:flex;

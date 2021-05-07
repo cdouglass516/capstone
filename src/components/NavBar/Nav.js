@@ -8,6 +8,7 @@ import user from './user.png';
 import pa from './pa.png';
 import park from './park.png';
 import venue from './venue.png';
+import logo from '../../static/logo.png';
 import './nav.css';
 import { MapConsumer } from "react-leaflet";
 
@@ -107,11 +108,12 @@ export const Nav = (props) => {
 
   }
   return (
-    <nav className="navbar nav-color flex-md-nowrap p-0 shadow">
-
+    <div className=" nav-color ">
+    <nav className="navbar flex-md-nowrap p-0 shadow">
+       
       <ul className="nav nav-pills nav-fill nb_width">
         <li className="nav-item">
-          <strong>Explore Nasville</strong>
+          <img src={logo} alt="Explore Nashville the it city for IT" className="nav_logo"/>
         </li>
         <li className="nav-item ">
           <a className="nav-link navbar_link "  href="#" alt="Nashville Venues" onClick={() => handleMarkerLink('venue')}><img className="nav-img" src={venue} alt="Nashville Venues"/>Nashville Venues</a>
@@ -133,5 +135,6 @@ export const Nav = (props) => {
         </li>
       </ul>
     </nav>
+    </div>
   )
 }

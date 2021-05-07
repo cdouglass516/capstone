@@ -24,7 +24,7 @@ export const HistoricalMarker = ({hist, returnRandomNumber, mapObj}) => {
             <div className="overview">
                 <h3>Historical Markers</h3>
                 <p>There are 216 historical markers in Davidson county. They have been errected from 1900 to 2021 </p>
-                <div><a href="#"  onClick={()=>handleRandomClick()}> Go to random marker {rndLink.marker_name}!</a></div>
+                <div><a href="#"  onClick={()=>handleRandomClick()} className="preview_link"> Go to random marker {rndLink.marker_name}!</a></div>
 
             </div>
 
