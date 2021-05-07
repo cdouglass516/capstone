@@ -80,6 +80,7 @@ export const App = () => {
               <Preview
                 isVisible={isPreview} preview={preview} setIsDetail={setIsDetail} setIsPreview={setIsPreview} hasHist={hasHist} hasPa={hasPa} users={userAdds}
                 hasPark={hasPark} hasUser={hasUser} hasVenue={hasVenue} venues={venues} mapObj={mapObj}hist={hist} pubArt={pubArt} parks={parks}
+                setHasHist={setHasHist} setHasPa={setHasPa} setHasPark={setHasPark} setHasUser={setHasUser} setHasVenue={setHasVenue}
               />
               <Detail
                 isDetail={isDetail} detail={detail} closeDetail={closeDetail} comments={comments}/>
@@ -117,3 +118,4 @@ export const App = () => {
 }
 
 // export default App;
+//setHasHist={setHasHist}setHasPa={setHasPa}setHasPark={setHasPark}  setHasUser={setHasUser} setHasVenue={setHasVenue}

@@ -25,7 +25,7 @@ export const PublicArt = ({mapObj,pubArt,returnRandomNumber}) => {
                 <h3>Public Art</h3>
                 <p>There are over 162 pieces of public art in Nashville</p>
 
-                <div><a href="#"  onClick={()=>handleRandomClick()}> Go to random art work in Davidson county ! {rndLink.title} in {rndLink.medium}!</a></div>
+                <div><a href="#"  onClick={()=>handleRandomClick()} className="preview_link"> Go to random art work in Davidson county ! {rndLink.title} in {rndLink.medium}!</a></div>
 
             </div>
 

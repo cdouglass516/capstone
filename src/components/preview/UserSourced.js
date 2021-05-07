@@ -24,7 +24,7 @@ export const UserSourced = ({users, mapObj, returnRandomNumber}) => {
             <div className="overview">
                 <h3>User Sourced</h3>
                 <p>Markers that are curated by users. To comment or rate a user marker you must be logged in!</p>
-                <div><a href="#"  onClick={()=>handleRandomClick()}> Visit a random place in Davidson county ! {rndLink.name} this is a {rndLink.type} with a rating of {Math.round(rndLink.ratingsTotal/rndLink.nbrReviews,1)}</a></div>
+                <div><a href="#"  onClick={()=>handleRandomClick()} className="preview_link"> Visit a random place in Davidson county ! {rndLink.name} this is a {rndLink.type} with a rating of {Math.round(rndLink.ratingsTotal/rndLink.nbrReviews,1)}</a></div>
                 <h4>Filter User Sourced</h4>
 
             </div>

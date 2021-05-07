@@ -1,5 +1,7 @@
 .nav-color{
-    background-color: #7E81BE;   
+    /* background-color: #7E81BE;   */
+    color: #7b4812;
+    background-image: linear-gradient(to right top, #aaacd8, #9c9ecf, #8f91c5, #8184bc, #7477b3); 
 }
 .navbar{
   height: 4rem;
@@ -24,4 +26,7 @@
   }
   .nb_width{
       width: 100%;
+  }
+  .nav_logo{
+    height:4rem;
   }
