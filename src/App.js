@@ -1,13 +1,14 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { Nav } from "./components/NavBar/Nav";
+import './App.css';
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
 import { Preview } from "./components/preview/Preview";
 import { Detail } from "./components/detail/Detail";
 import { AddMarker } from "./components/marker/AddMarker";
-import './App.css';
 import { MapSpace } from './components/map/map';
+import './components/map/map.css';
 
 
 
@@ -49,12 +50,12 @@ export const App = () => {
   }
   const AddMarkerConfirmation = ({ markerLatLng }) => {
     return (
-      <div>
+      <div className="marker_div">
         <div>
-        <label>Add a new Marker? at lat:{Math.round(markerLatLng.lat, 4)} &&  lng:{Math.round(markerLatLng.lng, 4)}</label>
+        <label>Add a new Marker?</label>
         </div>
-        <button onClick={handleMarkerBtn}>Yes</button>
-        <button onClick={() => setMarkerConfirm(false)}>Cancel</button>
+        <a href="#" className='btn_app btnAffirm' onClick={handleMarkerBtn}>Yes</a>
+        <a href='#' className='btn_app btnCancel' onClick={() => setMarkerConfirm(false)}>Cancel</a>
       </div>
     )
   }
@@ -83,7 +84,7 @@ export const App = () => {
                 setHasHist={setHasHist} setHasPa={setHasPa} setHasPark={setHasPark} setHasUser={setHasUser} setHasVenue={setHasVenue}
               />
               <Detail
-                isDetail={isDetail} detail={detail} closeDetail={closeDetail} comments={comments}/>
+                isDetail={isDetail} detail={detail} closeDetail={closeDetail} comments={comments} setComments={setComments}/>
               <AddMarker
                 isMarker={isMarker} setIsMarker={setIsMarker} marker={detail} setUserAdds={setUserAdds} markerLatLng={markerLatLng}
               />
@@ -94,9 +95,9 @@ export const App = () => {
 
               <MapSpace
                 pubArt={pubArt} setPubArt={setPubArt} parks={parks} setParks={setParks} hist={hist} setHist={setHist} comments={comments} setComments={setComments}
-                venues={venues} setVenues={setVenues} userAdds={userAdds} setUserAdds={setUserAdds}  markers={markers}  setIsDetail={setIsDetail} 
-                setMarkers={setMarkers} setMarkerConfirm={setMarkerConfirm} setMarkerLatLng={setMarkerLatLng} setIsPreview={setIsPreview}
-                setMapObj={setMapObj} histRef={histRef}paRef={paRef} parkRef={parkRef}  userRef={userRef} venueRef={venueRef} setDetail={setDetail}
+                venues={venues} setVenues={setVenues} userAdds={userAdds} setUserAdds={setUserAdds} markers={markers} setIsDetail={setIsDetail} 
+                setMarkers={setMarkers} setMarkerConfirm={setMarkerConfirm} setMarkerLatLng={setMarkerLatLng} setIsPreview={setIsPreview} hasUser={hasUser}
+                setMapObj={setMapObj} histRef={histRef}paRef={paRef} parkRef={parkRef} userRef={userRef} venueRef={venueRef} setDetail={setDetail}
               />
 
             </>
@@ -116,6 +117,3 @@ export const App = () => {
   </>
   )
 }
-
-// export default App;
-//setHasHist={setHasHist}setHasPa={setHasPa}setHasPark={setHasPark}  setHasUser={setHasUser} setHasVenue={setHasVenue}

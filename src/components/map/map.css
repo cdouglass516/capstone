@@ -57,3 +57,25 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(171,199,197,1) 0%, rg
 	background: rgba(255, 255, 255, 0.486);
 	border-radius: 5px;
 	}
+    .btn_app {
+        background-color: #0cec8f;
+        color:#7b4812;
+        margin:.8rem;
+        width:4rem;
+        text-decoration:none;
+        font-weight:bold;
+        border-radius:5px;
+        cursor:pointer;
+      }
+      
+      .btn_app:hover {
+        background-color: #555;
+      }
+      
+      .btn_app:active {
+        background-color: black;
+      }
+      
+      .btn_app:visited {
+        background-color: #ccc;
+      }

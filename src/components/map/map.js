@@ -14,7 +14,7 @@ import { getNashData } from '../../dataLayer/apiAccess';
 import { GetComments } from '../../dataLayer/appAccesss';
 
 export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, venues, setVenues, userAdds, setUserAdds, setComments, comments, setMarkerLatLng, markers,
-  setMarkerConfirm, setMapObj, histRef, paRef, parkRef, userRef, venueRef, setDetail, setIsDetail }) => {
+  setMarkerConfirm, setMapObj, histRef, paRef, parkRef, userRef, venueRef, setDetail, setIsDetail, hasUser }) => {
   const defaultPosition = [36.1614754, -86.7783034]; // Paris position
 
 
@@ -136,10 +136,13 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
     }
 
   function AddMarkerToClick() {
+    
     const map = useMapEvents({
       click(e) {
         setMarkerLatLng(e.latlng);
+        if(hasUser){
         setMarkerConfirm(true);
+        }
       },
     })
 
