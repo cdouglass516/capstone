@@ -68,99 +68,31 @@
   "comments": [
     {
       "id": 1,
-      "userId": 1,
-      "userMarkerId": 1,
-      "commentText": "This is ridiculous"
+      "userId": 2,
+      "userMarkerId": 5,
+      "commentText": "Crappy management fires all the staff that had been there forever. really ",
+      "datemod": 1621268679313
     },
     {
       "id": 2,
       "userId": 2,
-      "userMarkerId": 1,
-      "commentText": ""
+      "userMarkerId": 5,
+      "commentText": "That is crappy",
+      "datemod": 1621268917617
     },
     {
       "id": 3,
       "userId": 2,
-      "userMarkerId": 1,
-      "commentText": "My comment was not saved. The place was to crowded"
+      "userMarkerId": 5,
+      "commentText": "I really think that it is better",
+      "datemod": 1621269635834
     },
     {
       "id": 4,
-      "userId": 2,
-      "userMarkerId": 1,
-      "commentText": "Drinks were good the prices reasonable"
-    },
-    {
-      "id": 5,
-      "userId": 0,
-      "userMarkerId": 1,
-      "commentText": "This is what I meant"
-    },
-    {
-      "id": 6,
-      "userId": 0,
-      "userMarkerId": 2,
-      "commentText": "Good coffee cream"
-    },
-    {
-      "id": 7,
-      "userId": 2,
-      "userMarkerId": 3,
-      "commentText": "Good egg rolls"
-    },
-    {
-      "id": 8,
-      "userId": 2,
-      "userMarkerId": 6,
-      "commentText": "this is a comment"
-    },
-    {
-      "id": 9,
-      "userId": 2,
-      "userMarkerId": 6,
-      "commentText": "ok"
-    },
-    {
-      "id": 10,
-      "userId": 2,
-      "userMarkerId": 6,
-      "commentText": "bad parking"
-    },
-    {
-      "id": 11,
-      "userId": 2,
-      "userMarkerId": 6,
-      "commentText": "it is pretty good"
-    },
-    {
-      "id": 12,
-      "userId": 2,
-      "userMarkerId": 6,
-      "commentText": "It is"
-    },
-    {
-      "id": 13,
-      "userId": 2,
-      "userMarkerId": 6,
-      "commentText": "weweqeqw"
-    },
-    {
-      "id": 14,
-      "userId": 2,
-      "userMarkerId": 6,
-      "commentText": "aucks"
-    },
-    {
-      "id": 15,
-      "userId": 2,
-      "userMarkerId": 6,
-      "commentText": "really good"
-    },
-    {
-      "id": 16,
-      "userId": 2,
-      "userMarkerId": 6,
-      "commentText": "aSAS"
+      "userId": 1,
+      "userMarkerId": 5,
+      "commentText": "Not a bad place to drink and listen to music",
+      "datemod": 1621269704164
     }
   ],
   "userMarkers": [
@@ -213,8 +145,8 @@
       "link": "",
       "latitude": 36.22438505013363,
       "longitude": -86.72521591186523,
-      "nbrReviews": 11,
-      "ratingsTotal": 44
+      "nbrReviews": 6,
+      "ratingsTotal": 442
     },
     {
       "id": 4,
@@ -232,7 +164,7 @@
       "latitude": 36.24804797741572,
       "longitude": -86.7348052455418,
       "nbrReviews": 1,
-      "ratingsTotal": "4"
+      "ratingsTotal": 78
     },
     {
       "id": 5,
@@ -240,35 +172,17 @@
       "userId": 0,
       "lastModifieddate": 1620328557143,
       "type": "Bar",
-      "name": "Slow Bar",
+      "name": "The Cobra",
       "address": "",
       "city": "",
       "state": "",
       "zip": "",
       "description": "Good dive",
       "link": "",
-      "latitude": 36.18531518268624,
-      "longitude": -86.7459956457426,
-      "nbrReviews": 1,
-      "ratingsTotal": "3"
-    },
-    {
-      "id": 6,
-      "markerSourcesId": 3,
-      "userId": 0,
-      "lastModifieddate": 1620335949981,
-      "type": "",
-      "name": "Bob's Basement",
-      "address": "",
-      "city": "",
-      "state": "",
-      "zip": "",
-      "description": "Kind of strange but good music",
-      "link": "",
-      "latitude": 36.18302966219187,
-      "longitude": -86.7396682864394,
-      "nbrReviews": 11,
-      "ratingsTotal": 579
+      "latitude": 36.1955993,
+      "longitude": -86.7431116,
+      "nbrReviews": 8,
+      "ratingsTotal": 374
     },
     {
       "id": 7,
@@ -286,25 +200,7 @@
       "latitude": 34.7350268742395,
       "longitude": -86.57541011140007,
       "nbrReviews": 1,
-      "ratingsTotal": "3"
-    },
-    {
-      "id": 8,
-      "markerSourcesId": 3,
-      "userId": 0,
-      "lastModifieddate": 1620336703665,
-      "type": "",
-      "name": "Orange Mexican",
-      "address": "",
-      "city": "",
-      "state": "",
-      "zip": "",
-      "description": "Good solid usual mexican fare good service and parking",
-      "link": "",
-      "latitude": 36.248571259982036,
-      "longitude": -86.71975820233476,
-      "nbrReviews": 1,
-      "ratingsTotal": "2.6"
+      "ratingsTotal": "97"
     },
     {
       "id": 9,
@@ -339,6 +235,24 @@
       "link": "",
       "latitude": 36.22649491629451,
       "longitude": -86.72603509488272,
+      "nbrReviews": 1,
+      "ratingsTotal": "85"
+    },
+    {
+      "id": 11,
+      "markerSourcesId": 3,
+      "userId": 2,
+      "lastModifieddate": 1621267048769,
+      "type": "other",
+      "name": "Hunters Station",
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "description": "",
+      "link": "",
+      "latitude": 36.17886123891165,
+      "longitude": -86.75108340636673,
       "nbrReviews": 1,
       "ratingsTotal": "85"
     }

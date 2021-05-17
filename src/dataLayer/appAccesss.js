@@ -79,7 +79,10 @@ export const AddNewMarker = async (param) =>{
 
 export const GetComments = (id) => { //Get comments for a particular marker
     return fetch(`${localURL}comments?userMarkerId=${id}&_expand=user`)
-    .then(res => res.json())
+    .then(res => res.json()).then(resp =>{
+        resp.sort((a, b) => b.datemod - a.datemod)
+        return resp;
+    })
   }
 
   export const DeleteComment = (comment) =>{

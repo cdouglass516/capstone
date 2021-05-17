@@ -13,7 +13,7 @@ export const Detail = ({ isDetail, detail, closeDetail, comments, setComments, u
   const handleChange = (e) => {
     e.preventDefault();
     setYourComment(e.target.value)
-
+    if(!isEdit)setIsAddComment(true);
   }
   const handleEditComment = ({ comment }) => {
     setEditId(comment.id);
@@ -40,15 +40,14 @@ export const Detail = ({ isDetail, detail, closeDetail, comments, setComments, u
   }
   const handleEditCommentClick = () => {
     let user = parseInt(sessionStorage.getItem("exploreNashvegas_user"));
-    const addedComment = { id: editId, userId: user, userMarkerId: detail.id, commentText: yourComment }
+    const addedComment = { id: editId, userId: user, userMarkerId: detail.id, commentText: yourComment, datemod: Date.now() }
     EditComment(addedComment).then(resp => {
       setIsAddComment(false);
       setIsEdit(false);
       return resp;
     })
   }
-  const handleSaveComment = (e) => {
-    e.preventDefault();
+  const handleSaveComment = () => {
     let user = parseInt(sessionStorage.getItem("exploreNashvegas_user"));
     if(Number(document.getElementById('ratingsTotal').value) !==0){
       setIsRated(true)
@@ -56,17 +55,15 @@ export const Detail = ({ isDetail, detail, closeDetail, comments, setComments, u
       detail.ratingsTotal = Number(detail.ratingsTotal) + Number(rt.value);
       detail.nbrReviews++;
       EditMarker(detail).then(resp=>{
-        e.preventDefault();
         GetComments(detail.id).then(response => setComments(response))
       }).then(resp =>{
-        e.preventDefault();
         AddUserMarkers();
       }
 
       )
     }
 
-    const addedComment = { id: 0, userId: user, userMarkerId: detail.id, commentText: yourComment }
+    const addedComment = { id: 0, userId: user, userMarkerId: detail.id, commentText: yourComment, datemod: Date.now() }
     AddComment(addedComment).then(resp => {
       setIsAddComment(false);
       GetComments(detail.id).then(response => setComments(response))
@@ -108,10 +105,12 @@ export const Detail = ({ isDetail, detail, closeDetail, comments, setComments, u
   }
   const Comments = ({ comment }) => {
     let user = parseInt(sessionStorage.getItem("exploreNashvegas_user"));
+    var d = new Date(comment.datemod);
+    const comDate = d.toLocaleString();
     if (user === comment.userId) {
-      return <div><p>{comment.user.email} says:{comment.commentText}</p><a href="#" className='btn_app' onClick={() => { handleEditComment({ comment }) }}>Edit</a><a href="#" className='btn_app' onClick={() => { handleDeleteComment({ comment }) }}>Delete</a><hr></hr></div>
+      return <div>{comDate}<p>{comment.user.email} says:{comment.commentText}</p><a href="#" className='btn_app' onClick={() => { handleEditComment({ comment }) }}>Edit</a><a href="#" className='btn_app' onClick={() => { handleDeleteComment({ comment }) }}>Delete</a><hr></hr></div>
     } else {
-      return <div><p>{comment.user.email} says:{comment.commentText}</p></div>
+      return <div>{comDate}<p>{comment.user.email} says:{comment.commentText}</p></div>
     }
 
   }
@@ -153,8 +152,8 @@ export const Detail = ({ isDetail, detail, closeDetail, comments, setComments, u
             />
             </div>
             <div className='buttonDiv'>
-            {/* {{ isEdit } && <button onClick={() => { handleEditCommentClick((detail)) }}>Update</button>} */}
-            {{ isAddComment } && <button onClick={() => { handleSaveComment() }}>Save</button>}
+            {isEdit && <button onClick={() => { handleEditCommentClick((detail)) }}>Update</button>}
+            {isAddComment && <button onClick={() => { handleSaveComment() }}>Save</button>}
             </div>
           </form>
           <hr></hr>

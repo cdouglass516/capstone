@@ -281,7 +281,7 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
                             <p>{item.description}</p>
                             <p>What:{item.type}</p>
                             <div className="popupDetail">
-                              <b>User Rating</b> {Number.parseFloat(item.ratingsTotal / item.nbrReviews).toFixed(1)}{String.fromCharCode(9733)}
+                              <b>User Rating</b> {Number.parseFloat(item.ratingsTotal / item.nbrReviews).toFixed(1)} <b>Number of reviews:</b>{item.nbrReviews}
                             </div>
                             <a href="#" onClick={() => { handleUserClick({ item }) }} > More Info</a>
                           </div>
