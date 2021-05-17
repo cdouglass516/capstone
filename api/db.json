@@ -101,6 +101,12 @@
       "userId": 0,
       "userMarkerId": 2,
       "commentText": "Good coffee cream"
+    },
+    {
+      "id": 7,
+      "userId": 2,
+      "userMarkerId": 3,
+      "commentText": "Good egg rolls"
     }
   ],
   "userMarkers": [
@@ -245,6 +251,42 @@
       "longitude": -86.71975820233476,
       "nbrReviews": 1,
       "ratingsTotal": "2.6"
+    },
+    {
+      "id": 9,
+      "markerSourcesId": 3,
+      "userId": 2,
+      "lastModifieddate": 1620393456532,
+      "type": "restaurant",
+      "name": "Grill Shack",
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "description": "",
+      "link": "",
+      "latitude": 36.18683289021174,
+      "longitude": -86.7264134496172,
+      "nbrReviews": 1,
+      "ratingsTotal": "90"
+    },
+    {
+      "id": 10,
+      "markerSourcesId": 3,
+      "userId": 2,
+      "lastModifieddate": 1620405712957,
+      "type": "cs",
+      "name": "Sip Cafe",
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "description": "",
+      "link": "",
+      "latitude": 36.22649491629451,
+      "longitude": -86.72603509488272,
+      "nbrReviews": 1,
+      "ratingsTotal": "85"
     }
   ],
   "imagesAvailable": [
