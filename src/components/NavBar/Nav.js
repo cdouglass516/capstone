@@ -1,8 +1,6 @@
 import React from "react"
-import { Link } from "react-router-dom"
-import { Legend } from '../legend/Legend';
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { CgPlayListSearch } from "react-icons/cg";
 import hist from './hist.png';
 import user from './user.png';
 import pa from './pa.png';
@@ -10,9 +8,9 @@ import park from './park.png';
 import venue from './venue.png';
 import logo from '../../static/logo.png';
 import './nav.css';
-import { MapConsumer } from "react-leaflet";
 
 export const Nav = (props) => {
+  const [isUser, setIsUser] = React.useState(true);
 
   const handleMarkerLink = (link) => {
     
@@ -131,7 +129,8 @@ export const Nav = (props) => {
         <a className="nav-link navbar_link "  href="#" alt="Nashville Venues" onClick={() => handleMarkerLink('user')}><img className="nav-img" src={user} alt="User Sourced" onClick={() => handleMarkerLink('user')}></img>User Sourced</a>
         </li>
         <li className="nav-item logOff">
-          <Link className="nav-link navbar_link " to="/login">Login</Link>
+          {!isUser && <Link className="nav-link navbar_link " to="/login">Login</Link>}
+          {isUser && <Link className="nav-link navbar_link " to="/login">Logoff</Link>}
         </li>
       </ul>
     </nav>
