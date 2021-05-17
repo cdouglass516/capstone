@@ -75,16 +75,16 @@ export const AddMarker = ({ isMarker, setIsMarker, marker, setUserAdds, markerLa
           className="marker__picture"
         ></div> */}
       <div className="marker__description__container">
-        <div className="marker__description addMarker_form"><h3>ADD MARKER PAGE</h3>
+        <div className="marker__description addMarker_form"><h6>ADD MARKER PAGE</h6>
           <Form onSubmit={HandleSubmit}>
             <Form.Group>
-              <Form.Label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
+              <Form.Label className="my-1 mr-2 ow_formText" htmlFor="inlineFormCustomSelectPref">
                 Type
   </Form.Label>
               <Form.Control
                 onChange={handleChange}
                 as="select"
-                className="my-1 mr-sm-2"
+                className="my-1 mr-sm-2 ow_formText"
                 id="type"
                 value={markerObj.type}
                 custom
@@ -99,39 +99,40 @@ export const AddMarker = ({ isMarker, setIsMarker, marker, setUserAdds, markerLa
                 <option value="store">Store</option>
                 <option value="other">Other</option>
               </Form.Control>
-
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="text" placeholder="Name" onChange={handleChange} id="name" />
-            </Form.Group>
+              <Form.Control type="text" placeholder="Name" className="ow_formText" onChange={handleChange} id="name" />
+            
 
 
-            <Form.Group>
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} placeholder="Enter Description" onChange={handleChange} id="description" />
+            {/* <Form.Group> */}
+              <Form.Control as="textarea" rows={3} placeholder="Enter Description"  className="ow_formText" onChange={handleChange} id="description" />
+            {/* </Form.Group> */}
+            {/* <Form.Group > */}
+              {/* <Form.Label>Link</Form.Label> */}
+              <Form.Control type="link" placeholder="Link"   className="ow_formText" onChange={handleChange} id="link"/>
+            {/* </Form.Group> */}
+            {/* <Form.Group as={Row}> */}
             </Form.Group>
             <Form.Group >
-              <Form.Label>Link</Form.Label>
-              <Form.Control type="link" placeholder="Link" id="link" />
-            </Form.Group>
-            <Form.Group as={Row}>
               <Col xs="9">
-                <Form.Label>Range</Form.Label>
-                <Form.Control type="range" value={sliderVal} id="ratingsTotal"
+                <Form.Label>Rate the place</Form.Label>
+                <Form.Control type="range" value={sliderVal} id="ratingsTotal"  className="ow_formText"
                   onChange={handleChange} />
               </Col>
               <Col xs="3">
-                <Form.Control value={sliderVal} />
+                <Form.Control value={sliderVal} onChange={handleChange}  className="ow_formText" />
               </Col>
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-  </Button>
+            
+            
+            <Button variant="primary" type="submit" className="btn_formSubmit">
+              Add Marker
+            </Button>
           </Form>
 
         </div>
 
         <div style={{ display: 'flex' }}>
-          <a className="marker__button" href={marker?.seeMoreLink} target="_blank" rel="noreferrer">See more</a>
+          {/* <a className="marker__button" href={marker?.seeMoreLink} target="_blank" rel="noreferrer">See more</a> */}
         </div>
       </div>
       <div className="marker__close" onClick={() => closeAddMarker()}>

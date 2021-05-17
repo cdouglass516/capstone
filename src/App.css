@@ -23,10 +23,10 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.leaflet-control-layers {
+background: rgb(153, 48, 48);
 }
+
 
 @keyframes App-logo-spin {
   from {
@@ -36,6 +36,4 @@
     transform: rotate(360deg);
   }
 }
-.leaflet-control-layers {
-background: rgb(153, 48, 48);
-}
+
