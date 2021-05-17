@@ -53,7 +53,7 @@
       "id": 7,
       "isAdmin": false,
       "moderator": false,
-      "name": "Mary Mag",
+      "name": "Mary Addams",
       "password": ""
     },
     {
@@ -61,7 +61,7 @@
       "id": 8,
       "isAdmin": false,
       "moderator": false,
-      "name": "Paul Jewison",
+      "name": "Paul Jones",
       "password": ""
     }
   ],
