@@ -93,6 +93,13 @@
       "userMarkerId": 5,
       "commentText": "Not a bad place to drink and listen to music",
       "datemod": 1621269704164
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "userMarkerId": 1,
+      "commentText": "Usually crowded, drinks are reasonable",
+      "datemod": 1621276282618
     }
   ],
   "userMarkers": [
@@ -108,8 +115,8 @@
       "zip": "37206",
       "description": "Okay place to drink",
       "link": "http://www.thereddoorsaloon.com/east-nashville.html",
-      "nbrReviews": 11,
-      "ratingsTotal": 478,
+      "nbrReviews": 12,
+      "ratingsTotal": 543,
       "latitude": 36.1783375,
       "longitude": -86.7500539
     },

@@ -1,12 +1,25 @@
-# Getting Started with Create React App
+# Explore Nashville
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project uses React-Leaflet to display a map that we can add markers to from an Open Government API and then allow users to add a marker for a location they want to spotlight. It also allows other users to comment on and rate on a scale of 1 - 100.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
+## Dependencies
+: 1 React 17.0.2
+: 2 leaflet 1.7.1
+: 3
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "leaflet": "^1.7.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
+    "react-leaflet": "^3.1.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.1"
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
