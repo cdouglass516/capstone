@@ -2,8 +2,8 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './detail.css';
 import { BsFillXSquareFill } from "react-icons/bs";
-import { AddComment, DeleteComment, GetComments, EditComment,EditMarker } from '../../dataLayer/appAccesss'
-export const Detail = ({ isDetail, detail, closeDetail, comments, setComments }) => {
+import { AddComment, DeleteComment, GetComments, EditComment,EditMarker} from '../../dataLayer/appAccesss'
+export const Detail = ({ isDetail, detail, closeDetail, comments, setComments, userRef, mapObj}) => {
   const [isAddComment, setIsAddComment] = React.useState(false);
   const [yourComment, setYourComment] = React.useState('');
   const [isEdit, setIsEdit] = React.useState(false);
@@ -27,7 +27,10 @@ export const Detail = ({ isDetail, detail, closeDetail, comments, setComments })
     if (id === 'ratingsTotal') {
       setSliderVal(value);
     }
-
+  }
+  const AddUserMarkers = () =>{
+    userRef.current.eachLayer(layer=>{
+	          mapObj.addLayer(layer)})
   }
   const handleDeleteComment = ({ comment }) => {
     DeleteComment(comment).then(resp => {
@@ -44,22 +47,29 @@ export const Detail = ({ isDetail, detail, closeDetail, comments, setComments })
       return resp;
     })
   }
-  const handleSaveComment = () => {
+  const handleSaveComment = (e) => {
+    e.preventDefault();
     let user = parseInt(sessionStorage.getItem("exploreNashvegas_user"));
     if(Number(document.getElementById('ratingsTotal').value) !==0){
       setIsRated(true)
-   }
-    if(isRated){
       const rt = document.getElementById('ratingsTotal');
       detail.ratingsTotal = Number(detail.ratingsTotal) + Number(rt.value);
       detail.nbrReviews++;
       EditMarker(detail).then(resp=>{
-      })
+        e.preventDefault();
+        GetComments(detail.id).then(response => setComments(response))
+      }).then(resp =>{
+        e.preventDefault();
+        AddUserMarkers();
+      }
+
+      )
     }
 
     const addedComment = { id: 0, userId: user, userMarkerId: detail.id, commentText: yourComment }
     AddComment(addedComment).then(resp => {
       setIsAddComment(false);
+      GetComments(detail.id).then(response => setComments(response))
       return resp;
     })
   }
@@ -143,7 +153,7 @@ export const Detail = ({ isDetail, detail, closeDetail, comments, setComments })
             />
             </div>
             <div className='buttonDiv'>
-            {{ isEdit } && <button onClick={() => { handleEditCommentClick((detail)) }}>Update</button>}
+            {/* {{ isEdit } && <button onClick={() => { handleEditCommentClick((detail)) }}>Update</button>} */}
             {{ isAddComment } && <button onClick={() => { handleSaveComment() }}>Save</button>}
             </div>
           </form>

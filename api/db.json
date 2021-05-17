@@ -107,6 +107,60 @@
       "userId": 2,
       "userMarkerId": 3,
       "commentText": "Good egg rolls"
+    },
+    {
+      "id": 8,
+      "userId": 2,
+      "userMarkerId": 6,
+      "commentText": "this is a comment"
+    },
+    {
+      "id": 9,
+      "userId": 2,
+      "userMarkerId": 6,
+      "commentText": "ok"
+    },
+    {
+      "id": 10,
+      "userId": 2,
+      "userMarkerId": 6,
+      "commentText": "bad parking"
+    },
+    {
+      "id": 11,
+      "userId": 2,
+      "userMarkerId": 6,
+      "commentText": "it is pretty good"
+    },
+    {
+      "id": 12,
+      "userId": 2,
+      "userMarkerId": 6,
+      "commentText": "It is"
+    },
+    {
+      "id": 13,
+      "userId": 2,
+      "userMarkerId": 6,
+      "commentText": "weweqeqw"
+    },
+    {
+      "id": 14,
+      "userId": 2,
+      "userMarkerId": 6,
+      "commentText": "aucks"
+    },
+    {
+      "id": 15,
+      "userId": 2,
+      "userMarkerId": 6,
+      "commentText": "really good"
+    },
+    {
+      "id": 16,
+      "userId": 2,
+      "userMarkerId": 6,
+      "commentText": "aSAS"
     }
   ],
   "userMarkers": [
@@ -123,7 +177,7 @@
       "description": "Okay place to drink",
       "link": "http://www.thereddoorsaloon.com/east-nashville.html",
       "nbrReviews": 11,
-      "ratingsTotal": 28,
+      "ratingsTotal": 478,
       "latitude": 36.1783375,
       "longitude": -86.7500539
     },
@@ -140,7 +194,7 @@
       "description": "A really goo baegel",
       "link": "",
       "nbrReviews": 11,
-      "ratingsTotal": 44,
+      "ratingsTotal": 778,
       "latitude": 36.14157200831463,
       "longitude": -86.84123820512465
     },
@@ -213,8 +267,8 @@
       "link": "",
       "latitude": 36.18302966219187,
       "longitude": -86.7396682864394,
-      "nbrReviews": 9,
-      "ratingsTotal": 194
+      "nbrReviews": 11,
+      "ratingsTotal": 579
     },
     {
       "id": 7,
