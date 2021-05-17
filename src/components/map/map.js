@@ -87,7 +87,12 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
       })
       return response;
     }).then(data => {
-      setParks(data);
+      const parkArray = data.map((item, index) => {
+        let location = JSON.parse(item.mapped_location.human_address);
+        item.location = `${location.address}, ${location.city}  ${location.zip}`
+        return item;
+      })
+      setParks(parkArray);
     })
   }, []);
   React.useEffect(() => {
@@ -125,23 +130,23 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
       iconUrl: paIcon
     });
   }, []);
-  const handleUserClick = (marker) =>{
-    setDetail({...marker.item});
-      GetComments(marker.item.id).then(response => {
-        setComments(response)
-        return response;
-      }).then(data => {
-        setIsDetail(true);
-      })
-    }
+  const handleUserClick = (marker) => {
+    setDetail({ ...marker.item });
+    GetComments(marker.item.id).then(response => {
+      setComments(response)
+      return response;
+    }).then(data => {
+      setIsDetail(true);
+    })
+  }
 
   function AddMarkerToClick() {
-    
+
     const map = useMapEvents({
       click(e) {
         setMarkerLatLng(e.latlng);
-        if(hasUser){
-        setMarkerConfirm(true);
+        if (hasUser) {
+          setMarkerConfirm(true);
         }
       },
     })
@@ -218,13 +223,26 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
                           <strong>{item.park_name}</strong>
                           <div className="popup_text">
                             <p>{item.notes}</p>
-                            <p>location:{item.mapped_location.human_address}</p>
+                            <p>location:{item.location}</p>
                             <div className="popupDetail">
                               <label>ADA Accessible: {item.ada_accessible}</label>
                               <label>Restrooms: {item.restrooms_available}</label>
-
-
+                              <label>Playground: {item.playground}</label>
+                              <label>Picnic Shelters: {item.picnic_shelters} - {item.picnic_shelters_quantity} </label>
+                              <label>Dog Park: {item.dog_park} </label>
                             </div>
+                            <div className="add_details">
+                              <label><b>acreage:</b>{item.acres} &nbsp;<b>Baseball Fields:</b>{item.baseball_fields}</label>
+                              <label><b>Camping by Permit:</b>{item.camping_available_by_permit} &nbsp;<b>Disc Golf:</b>{item.disc_golf}</label>
+                              <label><b>Community Center:</b>{item.community_center} &nbsp;<b>Football Fields:</b>{item.football_multi_purpose_fields}</label>
+                              <label><b>Golf Course:</b>{item.golf_course} &nbsp;<b>Hiking Trails:</b>{item.hiking_trails}</label>
+                              <label><b>Lake:</b>{item.lake} &nbsp;<b>Boat Launch:</b>{item.boat_launch} &nbsp;<b>Canoe Launch:</b>{item.canoe_launch}</label>
+                              <label><b>Bike Trails:</b> {item.mountain_bike_trails} &nbsp;<b>Skate Park</b>{item.skate_park}</label>
+                              <label><b>Soccer Fields:</b>{item.soccer_fields} &nbsp;<b>Spray Park:{item.spray_park}</b></label>
+                              <label><b>Swimming Pool:</b>{item.swimming_pool} &nbsp;<b>Tennis Courts:{item.tennis_courts}</b></label>
+                              <label><b>Volleyball</b>{item.volleyball} &nbsp;<b>Walk/Jog Paths:</b>{item.walk_jog_paths}</label>
+                            </div>
+
                           </div>
 
                         </div>
@@ -265,7 +283,7 @@ export const MapSpace = ({ pubArt, setPubArt, parks, setParks, hist, setHist, ve
                             <div className="popupDetail">
                               <b>User Rating</b> {Number.parseFloat(item.ratingsTotal / item.nbrReviews).toFixed(1)}{String.fromCharCode(9733)}
                             </div>
-                            <a href="#" onClick={() => {handleUserClick({item})}} > More Info</a>
+                            <a href="#" onClick={() => { handleUserClick({ item }) }} > More Info</a>
                           </div>
                         </div>
                       </Popup>

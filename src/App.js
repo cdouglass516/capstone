@@ -84,7 +84,7 @@ export const App = () => {
                 setHasHist={setHasHist} setHasPa={setHasPa} setHasPark={setHasPark} setHasUser={setHasUser} setHasVenue={setHasVenue}
               />
               <Detail
-                isDetail={isDetail} detail={detail} closeDetail={closeDetail} comments={comments} setComments={setComments}/>
+                isDetail={isDetail} detail={detail} closeDetail={closeDetail} comments={comments} setComments={setComments} userRef={userRef} mapObj={mapObj} />
               <AddMarker
                 isMarker={isMarker} setIsMarker={setIsMarker} marker={detail} setUserAdds={setUserAdds} markerLatLng={markerLatLng}
               />
